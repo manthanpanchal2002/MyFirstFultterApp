@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class MyTheme {
   static ThemeData LightTheme(BuildContext context) => ThemeData(
@@ -13,4 +13,9 @@ class MyTheme {
 
   static ThemeData DarkTheme(BuildContext context) =>
       ThemeData(brightness: Brightness.dark);
+
+
+  // colors
+  static Color creamColor = Color(0xfff5f5f5); 
+  static Color darkbluishColor = Color(0xff403b58); 
 }
