@@ -20,24 +20,30 @@ class HomeDetailPage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.pushNamed(context, MyRoutes.CartRoute),
-        child: Icon(CupertinoIcons.cart),
-      ).pOnly(left: 0.0, right: 0.0, top: 0.0, bottom: 180),
+        child: Icon(
+          CupertinoIcons.cart,
+          color: Colors.white,
+        ),
+      ).pOnly(left: 0.0, right: 0.0, top: 0.0, bottom: 250),
       backgroundColor: Colors.white,
-      bottomNavigationBar: ButtonBar(
-        alignment: MainAxisAlignment.spaceBetween,
-        children: [
-          "\₹${catalog.price}".text.bold.xl3.make(),
-          10.heightBox,
-          ElevatedButton(
-                  onPressed: () {},
-                  style: ButtonStyle(
-                      foregroundColor: MaterialStatePropertyAll(Colors.white),
-                      backgroundColor: MaterialStatePropertyAll(Colors.black),
-                      shape: MaterialStateProperty.all(StadiumBorder())),
-                  child: "Buy".text.make())
-              .wh(100, 50)
-        ],
-      ).p32(),
+      bottomNavigationBar: Container(
+        color: MyTheme.creamColor,
+        child: ButtonBar(
+          alignment: MainAxisAlignment.spaceBetween,
+          children: [
+            "\₹${catalog.price}".text.bold.xl3.make(),
+            10.heightBox,
+            ElevatedButton(
+                    onPressed: () {},
+                    style: ButtonStyle(
+                        foregroundColor: MaterialStatePropertyAll(Colors.white),
+                        backgroundColor: MaterialStatePropertyAll(Colors.black),
+                        shape: MaterialStateProperty.all(StadiumBorder())),
+                    child: "Add to cart".text.make())
+                .wh(150, 50)
+          ],
+        ).p32(),
+      ),
       body: SafeArea(
           bottom: false,
           child: Column(
@@ -69,7 +75,7 @@ class HomeDetailPage extends StatelessWidget {
                           .text
                           .textStyle(context.captionStyle)
                           .make()
-                      // .p16()
+                          .p16()
                     ],
                   ).py64(),
                 ),

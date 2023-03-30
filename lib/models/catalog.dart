@@ -1,5 +1,12 @@
 class CatalogModels {
   static List<Item> items = [];
+
+  // get element by id
+  Item getById(int id) =>
+      items.firstWhere((element) => element.id == id, orElse: null);
+
+  // get element by position
+  Item getByPosition(int pos) =>items[pos];
 }
 
 class Item {
@@ -31,11 +38,11 @@ class Item {
 
   // class to map
   toMap() => {
-    "id": id,
-    "name": name,
-    "desc": desc,
-    "price": price,
-    "color": color,
-    "image": image
-  };
+        "id": id,
+        "name": name,
+        "desc": desc,
+        "price": price,
+        "color": color,
+        "image": image
+      };
 }

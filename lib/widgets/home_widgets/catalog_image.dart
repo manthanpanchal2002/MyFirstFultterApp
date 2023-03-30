@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -13,7 +12,7 @@ class CatalogImage extends StatelessWidget {
     return Image.asset(image)
         .box
         // .p16
-        .color(MyTheme.creamColor)
+        .color(context.canvasColor)
         .make()
         .p16();
     // .w40(context)
