@@ -1,4 +1,6 @@
+import 'package:first_flutter_application/utils/routes.dart';
 import 'package:first_flutter_application/widgets/themes.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -14,8 +16,12 @@ class HomeDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: MyTheme.creamColor,
+        backgroundColor: Colors.transparent,
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => Navigator.pushNamed(context, MyRoutes.CartRoute),
+        child: Icon(CupertinoIcons.cart),
+      ).pOnly(left: 0.0, right: 0.0, top: 0.0, bottom: 180),
       backgroundColor: Colors.white,
       bottomNavigationBar: ButtonBar(
         alignment: MainAxisAlignment.spaceBetween,
@@ -58,6 +64,12 @@ class HomeDetailPage extends StatelessWidget {
                           .textStyle(context.captionStyle)
                           .xl
                           .make(),
+                      10.heightBox,
+                      "Dolor aut explicabo omnis odit.Dolor aut explicabo omnis odit.Dolor aut explicabo omnis odit.Dolor aut explicabo omnis odit."
+                          .text
+                          .textStyle(context.captionStyle)
+                          .make()
+                      // .p16()
                     ],
                   ).py64(),
                 ),
