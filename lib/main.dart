@@ -3,12 +3,17 @@ import 'package:first_flutter_application/utils/routes.dart';
 import 'package:first_flutter_application/widgets/themes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 import 'Pages/cart_page.dart';
 import 'Pages/login.dart';
+import 'core/store.dart';
 
 void main() {
-  runApp(MyApp() as Widget);
+  runApp(VxState(
+    store: MyStore(),
+    child: MyApp()
+    ));
 }
 
 class MyApp extends StatelessWidget {

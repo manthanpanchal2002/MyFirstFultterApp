@@ -1,10 +1,4 @@
 class CatalogModels {
-  // singleton class
-  static final catModel = CatalogModels._internal();
-  CatalogModels._internal();
-  factory CatalogModels()=> catModel;
-  // ----------------
-  
   static List<Item> items = [];
 
   // get element by id
@@ -12,7 +6,7 @@ class CatalogModels {
       items.firstWhere((element) => element.id == id, orElse: null);
 
   // get element by position
-  Item getByPosition(int pos) =>items[pos];
+  Item getByPosition(int pos) => items[pos];
 }
 
 class Item {

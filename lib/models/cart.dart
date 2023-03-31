@@ -1,11 +1,10 @@
+import 'package:velocity_x/velocity_x.dart';
+
+import 'package:first_flutter_application/core/store.dart';
+import 'package:first_flutter_application/core/store.dart';
 import 'package:first_flutter_application/models/catalog.dart';
 
 class CartModel {
-  // singleton class
-  static final cartModel = CartModel._internal();
-  CartModel._internal();
-  factory CartModel()=> cartModel;
-  // ----------------
   late CatalogModels _catalog;
   final List<int> _itemId = [];
   CatalogModels get catalog => _catalog;
@@ -29,5 +28,14 @@ class CartModel {
 // remove item
   void remove(Item item) {
     _itemId.remove(item.id);
+  }
+}
+
+class AddMutation extends VxMutation<MyStore> {
+  final Item item;
+  AddMutation(this.item);
+  @override
+  perform() {
+    store!.cart._itemId.add(item.id);
   }
 }
