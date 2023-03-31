@@ -7,6 +7,8 @@ import 'package:velocity_x/velocity_x.dart';
 import 'package:first_flutter_application/models/catalog.dart';
 import 'package:first_flutter_application/models/catalog.dart';
 
+import '../core/store.dart';
+
 class CartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -24,9 +26,10 @@ class CartPage extends StatelessWidget {
 }
 
 class cartTotal extends StatelessWidget {
-  final _cart = CartModel();
+  // final _cart = CartModel();
   @override
   Widget build(BuildContext context) {
+    final CartModel _cart = (VxState.store as MyStore).cart;
     return SizedBox(
       height: 200,
       child: Row(
@@ -51,22 +54,25 @@ class cartTotal extends StatelessWidget {
   }
 }
 
-class cartList extends StatefulWidget {
-  @override
-  State<cartList> createState() => _cartListState();
-}
-
-class _cartListState extends State<cartList> {
-  final _cart = CartModel();
+class cartList extends StatelessWidget {
+  // final _cart = CartModel();
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        itemCount: _cart.items?.length,
-        itemBuilder: (BuildContext context, index) => ListTile(
-              leading: Icon(Icons.done),
-              trailing: IconButton(
-                  onPressed: () {}, icon: Icon(Icons.remove_circle_rounded)),
-              title: _cart.items[index].name.text.make(),
-            ));
+    final CartModel _cart = (VxState.store as MyStore).cart;
+    return _cart.items.isEmpty
+        ? "Cart is Empty".text.xl2.makeCentered()
+        : ListView.builder(
+            itemCount: _cart.items?.length,
+            itemBuilder: (BuildContext context, index) => ListTile(
+                  leading: Icon(Icons.done),
+                  trailing: IconButton(
+                    onPressed: () {
+                      _cart.remove(_cart.items[index]);
+                      // setState(() {});
+                    },
+                    icon: Icon(Icons.remove_circle_rounded),
+                  ),
+                  title: _cart.items[index].name.text.make(),
+                ));
   }
 }
