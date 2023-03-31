@@ -1,3 +1,4 @@
+import 'package:first_flutter_application/models/cart.dart';
 import 'package:first_flutter_application/widgets/themes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,7 @@ class CartPage extends StatelessWidget {
 }
 
 class cartTotal extends StatelessWidget {
+  final _cart = CartModel();
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -30,7 +32,7 @@ class cartTotal extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          "\ ₹10".text.xl5.make(),
+          "\ ₹${_cart.totalPrice}".text.xl5.make(),
           30.heightBox,
           ElevatedButton(
                   onPressed: () {
@@ -55,15 +57,16 @@ class cartList extends StatefulWidget {
 }
 
 class _cartListState extends State<cartList> {
+  final _cart = CartModel();
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        itemCount: 5,
+        itemCount: _cart.items?.length,
         itemBuilder: (BuildContext context, index) => ListTile(
               leading: Icon(Icons.done),
               trailing: IconButton(
                   onPressed: () {}, icon: Icon(Icons.remove_circle_rounded)),
-              title: "Item 1".text.make(),
+              title: _cart.items[index].name.text.make(),
             ));
   }
 }
