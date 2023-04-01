@@ -3,6 +3,7 @@ import 'package:first_flutter_application/widgets/themes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
+import 'package:flutter/src/widgets/framework.dart';
 
 import 'package:first_flutter_application/models/catalog.dart';
 import 'package:first_flutter_application/models/catalog.dart';
@@ -35,7 +36,13 @@ class cartTotal extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          "\ ₹${_cart.totalPrice}".text.xl5.make(),
+          VxConsumer(
+            notifications: {},
+            builder: (context, _, Null) {
+              return " ₹${_cart.totalPrice}".text.xl5.make();
+            },
+            mutations: {RemoveMutation},
+          ),
           30.heightBox,
           ElevatedButton(
                   onPressed: () {
@@ -58,6 +65,7 @@ class cartList extends StatelessWidget {
   // final _cart = CartModel();
   @override
   Widget build(BuildContext context) {
+    VxState.watch(context, on: [RemoveMutation]);
     final CartModel _cart = (VxState.store as MyStore).cart;
     return _cart.items.isEmpty
         ? "Cart is Empty".text.xl2.makeCentered()
@@ -67,7 +75,7 @@ class cartList extends StatelessWidget {
                   leading: Icon(Icons.done),
                   trailing: IconButton(
                     onPressed: () {
-                      _cart.remove(_cart.items[index]);
+                      RemoveMutation(_cart.items[index]);
                       // setState(() {});
                     },
                     icon: Icon(Icons.remove_circle_rounded),
